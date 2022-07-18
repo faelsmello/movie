@@ -1,4 +1,55 @@
-<section class="detail">
-    {{movie | json}}
-    <h1>{{movie?.title}}</h1>
+<app-load *ngIf="load"></app-load>
+
+<section class="detail" *ngIf="!load">
+    <h1 class="detail__title">
+        {{movie?.title}}
+        <span>{{ movie?.release_date | date: 'dd/MM/yyyy' }}</span>
+    </h1>
+    <div class="detail__content">
+        <div class="detail__content__info">
+            <h4 class="detail__content__info__marker --border">
+                Sinopse
+            </h4>
+            <p>{{movie?.overview}}</p>
+
+            <h4 class="detail__content__info__marker --border">
+                Informações
+            </h4>
+
+            <ul class="detail__content__info__list">
+                <li>
+                    <div class="detail__content__info__marker">Situação</div>
+                    <p>{{movie?.status}}</p>
+                </li>
+                <li>
+                    <div class="detail__content__info__marker">Idioma</div>
+                    <p *ngFor="let language of movie.spoken_languages">
+                        {{language.name}}
+                    </p>
+                </li>
+                <li>
+                    <div class="detail__content__info__marker">Duração</div>
+                    <p>{{movie.runtime}} min</p>
+
+                </li>
+                <li>
+                    <div class="detail__content__info__marker">Orçamento</div>
+                    <p>{{ movie.budget | currency }}</p>
+                </li>
+                <li>
+                    <div class="detail__content__info__marker">Receita</div>
+                    <p>{{ movie.revenue | currency }}</p>
+                </li>
+                <li>
+                    <div class="detail__content__info__marker">Lucro</div>
+                    <p>{{ (movie.revenue - movie.budget) | currency }}<p>
+                </li>
+            </ul>
+            <app-tags [tags]="[12]"></app-tags>
+<!--            <p>{{movie?.overview}}</p>-->
+        </div>
+        <figure class="detail__content__figure">
+            <img [src]="endpointImage + '/w500' + movie?.poster_path" loading="lazy">
+        </figure>
+    </div>
 </section>

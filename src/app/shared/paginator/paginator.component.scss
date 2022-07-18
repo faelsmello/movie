@@ -1,0 +1,56 @@
+@mixin item {
+    border-radius: 50px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .20rem;
+    transition: all .2s ease-in-out;
+}
+
+.paginator {
+    list-style: none;
+    padding-inline-start: 0;
+    display: flex;
+    align-items: center;
+    margin: 2rem;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 2rem;
+    grid-gap: .25rem;
+    &__item {
+        font-family: var(--theme-font-abel);
+        color: var(--theme-primary-color);
+        cursor: pointer;
+        @include item;
+
+        &:hover {
+            background: #f5f5f5;
+        }
+
+        &--active {
+            @include item;
+            transform: scale(1.25);
+            background: var(--theme-secundary-color);
+            border: solid 1px var(--theme-primary-color);
+
+            span {
+                background: var(--theme-primary-color);
+                color: var(--theme-secundary-color);
+                font-family: var(--theme-font-abel);
+                font-size: 1rem;
+                width: 100%;
+                height: 100%;
+                border-radius: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &:hover {
+                background: var(--theme-secundary-color);;
+            }
+        }
+    }
+}

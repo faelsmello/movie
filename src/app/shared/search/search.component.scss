@@ -1,0 +1,19 @@
+.search {
+    margin: 2rem 0;
+    &__autocomplete {
+        position: relative;
+    }
+
+    &__input {
+        width: 100%;
+        background: #ebebeb;
+        border-radius: 50px;
+        padding: .75rem 1.25rem;
+        font-family: var(--theme-font-abel);
+        color: var(--theme-primary-color);
+        border: none;
+        &::placeholder {
+            color: var(--theme-primary-color);
+        }
+    }
+}

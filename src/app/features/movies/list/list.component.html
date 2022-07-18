@@ -1,0 +1,31 @@
+<app-search></app-search>
+
+<ng-template #listMovies [ngTemplateOutlet]="listMovies"
+             *ngFor="let movie of movies?.results.slice(countPaginator.start, countPaginator.end)">
+    <a [routerLink]="[movie.id]">
+        <section class="movie">
+            <figure class="movie__figure">
+                <img [src]="endpointImage + '/w200' + movie?.poster_path">
+            </figure>
+            <div class="movie__content">
+                <h1 class="movie__content__title">
+                    {{ movie?.title }}
+                    <div class="movie__content__title__budget">
+                        <span>{{ movie?.vote_average }}</span>
+                    </div>
+                </h1>
+                <div class="movie__content__date">
+                    {{ movie?.release_date | date: 'dd/MM/yyyy' }}
+                </div>
+                <div class="movie__content__inner">
+                    <p>
+                        {{ movie?.overview }}
+                    </p>
+                    <app-tags [tags]="movie?.genre_ids"></app-tags>
+                </div>
+            </div>
+        </section>
+    </a>
+</ng-template>
+
+<app-paginator *ngIf="movies" (eventChangePages)="changePage($event)" [lenght]="movies?.results.length"></app-paginator>

@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/styles/fonts/abel';
+@import 'assets/styles/fonts/lato';
+
+:root {
+    --theme-primary-color: #116193;
+    --theme-secundary-color: #46e8e4;
+    --theme-font-abel: 'Abel';
+    --theme-font-lato: 'Lato';
+}
+
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--theme-font-lato), Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    &:focus {
+        outline: none !important;
+    }
+
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

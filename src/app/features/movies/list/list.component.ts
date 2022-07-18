@@ -11,6 +11,7 @@ export class ListComponent implements OnInit {
 
     movies: any = null;
     endpointImage: string = environment.ENDPOINT_IMAGE;
+    load = true;
     countPaginator: any = {
         start: 0,
         end: 5,
@@ -22,9 +23,14 @@ export class ListComponent implements OnInit {
 
     ngOnInit(): void {
         this.getGenreList();
+        this.getMovies();
+    }
+
+    getMovies(): void {
         this.appService.getList('movie/now_playing')
             .subscribe((response: any) => {
                 this.movies = response;
+                this.load = false;
             });
     }
 
@@ -39,10 +45,25 @@ export class ListComponent implements OnInit {
             });
     }
 
+    search(event: Event): void {
+        if (event) {
+            this.changePage(1);
+            this.movies = event;
+        } else {
+            this.load = true;
+            this.changePage(1);
+            this.getMovies();
+        }
+    }
+
+    isLoading(event: Event | any): void {
+        this.load = (event) ? true : false;
+    }
+
     changePage(event: any): void {
         this.countPaginator.page = event;
-        this.countPaginator.start = (this.countPaginator.page === 1) ? 0 : this.countPaginator.page * 5;
-        this.countPaginator.end = (this.countPaginator.page === 1) ? 5 : (this.countPaginator.page + 1) * 5;
+        this.countPaginator.start = (this.countPaginator.page === 1) ? 0 : (5 * this.countPaginator.page) - 5;
+        this.countPaginator.end = (this.countPaginator.page === 1) ? 5 : (5 * this.countPaginator.page);
     }
 
 }

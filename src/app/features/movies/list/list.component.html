@@ -1,11 +1,13 @@
-<app-search></app-search>
+<app-search (eventSearchResult)="search($event)" (load)="isLoading($event)"></app-search>
+
+<app-load *ngIf="load"></app-load>
 
 <ng-template #listMovies [ngTemplateOutlet]="listMovies"
-             *ngFor="let movie of movies?.results.slice(countPaginator.start, countPaginator.end)">
-    <a [routerLink]="[movie.id]">
+             *ngFor="let movie of movies?.results?.slice(countPaginator.start, countPaginator.end)">
+    <a [routerLink]="[movie.id]" *ngIf="!load">
         <section class="movie">
             <figure class="movie__figure">
-                <img [src]="endpointImage + '/w200' + movie?.poster_path">
+                <img [src]="endpointImage + '/w200' + movie?.poster_path" loading="lazy">
             </figure>
             <div class="movie__content">
                 <h1 class="movie__content__title">
@@ -28,4 +30,8 @@
     </a>
 </ng-template>
 
-<app-paginator *ngIf="movies" (eventChangePages)="changePage($event)" [lenght]="movies?.results.length"></app-paginator>
+<div *ngIf="!movies?.results?.length && !load" class="empty">
+    Sem Resultado para essa busca!
+</div>
+
+<app-paginator *ngIf="!load && movies" (eventChangePages)="changePage($event)" [lenght]="movies?.results.length"></app-paginator>

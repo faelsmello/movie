@@ -3,17 +3,21 @@ import {CommonModule} from '@angular/common';
 import {SearchComponent} from './search/search.component';
 import { TagsComponent } from './tags/tags.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { LoadComponent } from './load/load.component';
 
 
 @NgModule({
-    declarations: [SearchComponent, TagsComponent, PaginatorComponent],
+    declarations: [SearchComponent, TagsComponent, PaginatorComponent, LoadComponent],
     imports: [
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
     exports: [
         SearchComponent,
         TagsComponent,
-        PaginatorComponent
+        PaginatorComponent,
+        LoadComponent
     ]
 })
 export class SharedModule {

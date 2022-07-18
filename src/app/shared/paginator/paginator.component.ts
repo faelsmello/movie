@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 @Component({
     selector: 'app-paginator',
     template: `
-        <ul class="paginator">
+        <ul class="paginator" *ngIf="lenght">
             <ng-template #listPaginator [ngTemplateOutlet]="listPaginator"
                          *ngFor="let n of [].constructor(pages); let i = index;">
                 <li class="paginator__item"
@@ -27,7 +27,9 @@ export class PaginatorComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.pages = Math.round((this.lenght / 5)) - 1;
+        if (this.lenght) {
+            this.pages = Math.round((this.lenght / 5));
+        }
     }
 
     selectedPage(n: number): void {

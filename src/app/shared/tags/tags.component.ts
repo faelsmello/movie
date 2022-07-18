@@ -7,7 +7,7 @@ import {AppService} from '../../services/app.service';
         <ul class="tags">
             <ng-template #listTags [ngTemplateOutlet]="listTags"
                 *ngFor="let tag of tags">
-                <li class="tags__item">{{tagsData[tag]}}</li>
+                <li class="tags__item" *ngIf="tagsData[tag]">{{tagsData[tag]}}</li>
             </ng-template>
         </ul>
     `,

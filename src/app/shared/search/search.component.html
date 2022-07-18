@@ -1,5 +1,8 @@
 <section class="search">
-    <div class="search__autocomplete">
-        <input class="search__input" placeholder="Busque um filme por nome, ano ou gênero...">
-    </div>
+    <form name="formSearch" [formGroup]="searchForm">
+        <div class="search__autocomplete">
+            <input class="search__input" placeholder="Busque um filme por nome, ano ou gênero..."
+            formControlName="query" type="search">
+        </div>
+    </form>
 </section>

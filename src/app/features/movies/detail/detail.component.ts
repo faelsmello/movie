@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-    movie: null;
+    movie: any = null;
 
   constructor(private appService: AppService,
               private activatedRoute: ActivatedRoute) { }

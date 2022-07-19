@@ -64,6 +64,10 @@ export class ListComponent implements OnInit {
         this.countPaginator.page = event;
         this.countPaginator.start = (this.countPaginator.page === 1) ? 0 : (5 * this.countPaginator.page) - 5;
         this.countPaginator.end = (this.countPaginator.page === 1) ? 5 : (5 * this.countPaginator.page);
+
+        const element: HTMLElement | any = document.querySelector('#home');
+        (element as HTMLElement).scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+
     }
 
 }

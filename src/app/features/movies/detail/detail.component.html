@@ -23,7 +23,7 @@
                 </li>
                 <li>
                     <div class="detail__content__info__marker">Idioma</div>
-                    <p *ngFor="let language of movie.spoken_languages">
+                    <p *ngFor="let language of movie.spoken_languages" class="no-mb">
                         {{language.name}}
                     </p>
                 </li>
@@ -45,11 +45,18 @@
                     <p>{{ (movie.revenue - movie.budget) | currency }}<p>
                 </li>
             </ul>
-            <app-tags [tags]="[12]"></app-tags>
-<!--            <p>{{movie?.overview}}</p>-->
+            <app-tags [tags]="movie?.genres" [flag]="true"></app-tags>
+            <div class="detail__content__info__budget">
+                <span>{{ movie.vote_average }}</span>
+            </div>
+
         </div>
         <figure class="detail__content__figure">
             <img [src]="endpointImage + '/w500' + movie?.poster_path" loading="lazy">
         </figure>
     </div>
+
+        <iframe class="detail__content__iframe"
+                [src]="this.movie.videos.safeUrl"
+                [title]="this.movie.videos.name" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </section>

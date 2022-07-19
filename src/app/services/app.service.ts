@@ -32,6 +32,7 @@ export class AppService {
 
         obj = obj.append('api_key', '8c7b911c7d628288f8e3e7663c8da761');
         obj = obj.append('language', 'pt-BR');
+        obj = obj.append('append_to_response', 'videos');
 
         return this.http.get(`${environment.ENDPOINT}/movie/${id}`, {
                 params: obj,

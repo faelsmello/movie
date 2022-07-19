@@ -7,7 +7,8 @@ import {AppService} from '../../services/app.service';
         <ul class="tags">
             <ng-template #listTags [ngTemplateOutlet]="listTags"
                 *ngFor="let tag of tags">
-                <li class="tags__item">{{tagsData[tag]}}</li>
+                <li class="tags__item" *ngIf="!flag">{{tagsData[tag]}}</li>
+                <li class="tags__item" *ngIf="flag">{{ tag.name }}</li>
             </ng-template>
         </ul>
     `,
@@ -16,6 +17,7 @@ import {AppService} from '../../services/app.service';
 export class TagsComponent implements OnInit {
 
     @Input() tags: any[];
+    @Input() flag: any | boolean;
     tagsData;
 
     constructor(private appService: AppService) {

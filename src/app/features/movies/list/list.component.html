@@ -7,7 +7,7 @@
     <a [routerLink]="[movie.id]" *ngIf="!load">
         <section class="movie">
             <figure class="movie__figure">
-                <img [src]="endpointImage + '/w200' + movie?.poster_path" loading="lazy">
+                <img [src]="endpointImage + '/w400' + movie?.poster_path" loading="lazy">
             </figure>
             <div class="movie__content">
                 <h1 class="movie__content__title">

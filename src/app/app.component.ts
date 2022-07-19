@@ -13,9 +13,5 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.app.getList()
-        //     .subscribe((response: any) => {
-        //         console.log(response);
-        //     });
     }
 }
